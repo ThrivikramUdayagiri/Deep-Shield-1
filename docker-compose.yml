@@ -1,0 +1,48 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    environment:
+      MONGODB_URI: mongodb://mongo:27017
+      MONGODB_DB: deepshield
+      JWT_SECRET: ${JWT_SECRET:-local-dev-secret-change-me}
+      CORS_ORIGINS: http://localhost:5173,http://localhost:8080
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      HF_TOKEN: ${HF_TOKEN:-}
+      GEMINI_MODEL_NAME: ${GEMINI_MODEL_NAME:-gemini-2.5-flash}
+      HF_MODEL_NAME: ${HF_MODEL_NAME:-Qwen/Qwen2.5-7B-Instruct-1M}
+      HF_ROUTER_URL: ${HF_ROUTER_URL:-https://router.huggingface.co/v1}
+      AI_REQUEST_TIMEOUT_SECONDS: ${AI_REQUEST_TIMEOUT_SECONDS:-30}
+      ENABLE_LLM_GENERATION: ${ENABLE_LLM_GENERATION:-true}
+      ENABLE_EMBEDDING_REASONING: ${ENABLE_EMBEDDING_REASONING:-false}
+      TEXT_MODEL_NAME: ${TEXT_MODEL_NAME:-google/flan-t5-small}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@deepshield.local}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-AdminPass123!}
+    ports:
+      - "8000:8000"
+    volumes:
+      - hf_models:/models
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
+  hf_models:

@@ -1,0 +1,290 @@
+[
+  {
+    "dataset_key": "image_invoice_fake_001",
+    "scenario_type": "image",
+    "label": "fake",
+    "title": "Vendor Invoice Screenshot",
+    "difficulty": 2,
+    "source": "managed_dataset:synthetic_document",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "document",
+      "suspicious": true,
+      "headline": "Invoice #A-1048",
+      "subhead": "Payment request from new vendor",
+      "detail": "New bank details were added outside the purchase order workflow.",
+      "alt": "Invoice screenshot with altered bank details"
+    },
+    "indicators": [
+      "Bank details changed without a trusted approval trail",
+      "Visual spacing and stamp alignment are inconsistent",
+      "The invoice pressures payment to a new account",
+      "Vendor context does not match a normal procurement workflow"
+    ],
+    "explanation": "The invoice is fake because it introduces new payment details and visual inconsistencies while creating pressure to bypass normal approval checks.",
+    "tags": ["image", "invoice", "payment_fraud", "document_tampering"]
+  },
+  {
+    "dataset_key": "image_profile_genuine_001",
+    "scenario_type": "image",
+    "label": "genuine",
+    "title": "Employee Profile Update",
+    "difficulty": 1,
+    "source": "managed_dataset:synthetic_profile",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "profile",
+      "suspicious": false,
+      "headline": "Profile Update Notice",
+      "subhead": "Internal directory change",
+      "detail": "The notice matches the internal directory format and asks for no secrets.",
+      "alt": "Internal profile update screenshot"
+    },
+    "indicators": [
+      "No credential or payment request is present",
+      "The message fits a routine internal workflow",
+      "Visual formatting is consistent across the capture",
+      "The user can verify through the internal directory"
+    ],
+    "explanation": "This is genuine because it is low pressure, visually consistent, and points to a routine internal directory update.",
+    "tags": ["image", "profile", "internal_notice", "genuine"]
+  },
+  {
+    "dataset_key": "audio_voice_fake_001",
+    "scenario_type": "audio",
+    "label": "fake",
+    "title": "Executive Voice Note",
+    "difficulty": 3,
+    "source": "managed_dataset:synthetic_audio",
+    "content": {
+      "asset_kind": "audio_wav",
+      "suspicious": true,
+      "duration_seconds": 3,
+      "transcript": "I am in a confidential meeting. Buy five gift cards now and send the codes to this number before noon.",
+      "speaker": "Claimed CFO",
+      "context": "Unexpected voice note in a team chat"
+    },
+    "indicators": [
+      "The request asks for gift card codes",
+      "The speaker claims urgency and secrecy",
+      "The channel is unusual for finance approval",
+      "No callback or independent verification path is offered"
+    ],
+    "explanation": "The voice note is fake because it combines an unusual payment request with secrecy and urgent pressure.",
+    "tags": ["audio", "voice_clone", "gift_card_scam", "urgency"]
+  },
+  {
+    "dataset_key": "audio_service_genuine_001",
+    "scenario_type": "audio",
+    "label": "genuine",
+    "title": "Support Callback Recording",
+    "difficulty": 2,
+    "source": "managed_dataset:synthetic_audio",
+    "content": {
+      "asset_kind": "audio_wav",
+      "suspicious": false,
+      "duration_seconds": 3,
+      "transcript": "This is your scheduled support callback. Please open your existing ticket and confirm the last four digits shown there.",
+      "speaker": "Support agent",
+      "context": "Callback requested by the user"
+    },
+    "indicators": [
+      "The callback was expected",
+      "The agent references an existing ticket",
+      "The request avoids full passwords or payment details",
+      "Verification happens through the user's existing support portal"
+    ],
+    "explanation": "This is genuine because it is expected, bounded to an existing ticket, and avoids collecting sensitive secrets.",
+    "tags": ["audio", "support", "callback", "genuine"]
+  },
+  {
+    "dataset_key": "audio_vendor_fake_tricky_001",
+    "scenario_type": "audio",
+    "label": "fake",
+    "title": "Tricky Voice Message from Vendor",
+    "difficulty": 5,
+    "source": "managed_dataset:synthetic_audio",
+    "content": {
+      "asset_kind": "audio_wav",
+      "suspicious": true,
+      "duration_seconds": 4,
+      "transcript": "Hi, this is Priya from Apex Supplies. We changed banks after the audit. Please send today's payment to the new account I just texted. The invoice number is the same, so finance will approve it later.",
+      "speaker": "Claimed vendor account manager",
+      "context": "The vendor name is familiar, but the payment instruction arrives as a voice message outside the procurement portal."
+    },
+    "indicators": [
+      "Requests payment to a new bank account outside the procurement workflow",
+      "Uses a familiar vendor identity to lower suspicion",
+      "Asks for payment before finance approval",
+      "Relies on voice context instead of a verified written change request"
+    ],
+    "explanation": "This is fake. Familiar vendor details make it tricky, but the new bank account and request to bypass finance approval are strong fraud indicators.",
+    "tags": ["audio", "tricky", "vendor_fraud", "payment_redirection"]
+  },
+  {
+    "dataset_key": "audio_hr_genuine_001",
+    "scenario_type": "audio",
+    "label": "genuine",
+    "title": "Genuine HR Voice Reminder",
+    "difficulty": 3,
+    "source": "managed_dataset:synthetic_audio",
+    "content": {
+      "asset_kind": "audio_wav",
+      "suspicious": false,
+      "duration_seconds": 3,
+      "transcript": "Hi, this is HR. Your benefits review window opens Monday. Please open the employee portal from your usual bookmark and review your choices. We will not ask for your password or one-time code.",
+      "speaker": "HR benefits team",
+      "context": "The reminder matches the published benefits review schedule."
+    },
+    "indicators": [
+      "Directs the user to the usual employee portal",
+      "Does not include a link or request secrets",
+      "Matches a scheduled benefits review window",
+      "Explicitly avoids password or one-time code collection"
+    ],
+    "explanation": "This is genuine because it points to a known portal, matches expected timing, and avoids sensitive collection.",
+    "tags": ["audio", "hr", "genuine", "scheduled_notice"]
+  },
+  {
+    "dataset_key": "video_deepfake_fake_001",
+    "scenario_type": "video",
+    "label": "fake",
+    "title": "Leadership Announcement Clip",
+    "difficulty": 4,
+    "source": "managed_dataset:synthetic_video",
+    "content": {
+      "asset_kind": "video_poster",
+      "suspicious": true,
+      "headline": "Urgent Budget Transfer Clip",
+      "detail": "The preview has frame jumps around the mouth and mismatched lighting.",
+      "transcript": "Approve the transfer today. Do not wait for the finance review.",
+      "observations": ["Mouth shape lags behind audio", "Lighting changes around the jawline", "Request bypasses finance review"]
+    },
+    "indicators": [
+      "Lip movement and spoken words are out of sync",
+      "Lighting around the face is inconsistent",
+      "The clip asks viewers to bypass normal approval",
+      "There is no trusted source or full meeting context"
+    ],
+    "explanation": "This video is fake because media artifacts align with a high-risk request to skip financial controls.",
+    "tags": ["video", "deepfake", "approval_bypass", "executive_impersonation"]
+  },
+  {
+    "dataset_key": "video_training_genuine_001",
+    "scenario_type": "video",
+    "label": "genuine",
+    "title": "Recorded Security Briefing",
+    "difficulty": 2,
+    "source": "managed_dataset:synthetic_video",
+    "content": {
+      "asset_kind": "video_poster",
+      "suspicious": false,
+      "headline": "Security Briefing Replay",
+      "detail": "The replay is hosted in the internal learning portal with normal framing.",
+      "transcript": "Please complete the quarterly training module in the learning portal by Friday.",
+      "observations": ["Stable lighting", "No sensitive request", "Matches scheduled training"]
+    },
+    "indicators": [
+      "The training was expected",
+      "The content asks for normal learning portal activity",
+      "No secret, transfer, or unusual payment is requested",
+      "Visual quality is consistent across the clip"
+    ],
+    "explanation": "This is genuine because it is a routine training reminder with consistent media and no risky action.",
+    "tags": ["video", "training", "genuine", "internal_notice"]
+  },
+  {
+    "dataset_key": "qr_parking_fake_001",
+    "scenario_type": "qr_code",
+    "label": "fake",
+    "title": "Parking Payment QR Sticker",
+    "difficulty": 3,
+    "source": "managed_dataset:synthetic_qr",
+    "content": {
+      "asset_kind": "qr_svg",
+      "suspicious": true,
+      "destination_url": "park-pay-fast.example",
+      "placement": "Sticker placed over the official meter label",
+      "preview_text": "Pay parking fine now"
+    },
+    "indicators": [
+      "The QR sticker is placed over an official label",
+      "The destination domain is not the city parking domain",
+      "The payment language creates urgency",
+      "There is no visible official verification mark"
+    ],
+    "explanation": "This QR code is fake because the placement and destination suggest a tampered payment flow.",
+    "tags": ["qr_code", "quishing", "payment_fraud", "lookalike_domain"]
+  },
+  {
+    "dataset_key": "qr_event_genuine_001",
+    "scenario_type": "qr_code",
+    "label": "genuine",
+    "title": "Conference Check-in QR",
+    "difficulty": 1,
+    "source": "managed_dataset:synthetic_qr",
+    "content": {
+      "asset_kind": "qr_svg",
+      "suspicious": false,
+      "destination_url": "events.example/checkin",
+      "placement": "Printed on the attendee badge",
+      "preview_text": "Open conference check-in"
+    },
+    "indicators": [
+      "The QR code appears in an expected event context",
+      "The destination matches the event domain",
+      "It opens check-in rather than a payment or login demand",
+      "The printed badge context supports authenticity"
+    ],
+    "explanation": "This QR code is genuine because the destination and placement match the expected event check-in workflow.",
+    "tags": ["qr_code", "event", "genuine", "context_match"]
+  },
+  {
+    "dataset_key": "website_bank_fake_001",
+    "scenario_type": "website",
+    "label": "fake",
+    "title": "Bank Alert Landing Page",
+    "difficulty": 4,
+    "source": "managed_dataset:synthetic_website",
+    "content": {
+      "asset_kind": "website_html",
+      "suspicious": true,
+      "brand": "Northbank Security",
+      "display_domain": "northbank-verify.example",
+      "call_to_action": "Unlock account",
+      "body": "Your account is suspended. Enter your credentials now to prevent closure."
+    },
+    "indicators": [
+      "The domain is a lookalike verification domain",
+      "The page asks for credentials under threat of closure",
+      "The page uses urgency instead of a normal login workflow",
+      "There is no independent account navigation path"
+    ],
+    "explanation": "The website is fake because it harvests credentials through a lookalike domain and high-pressure account threat.",
+    "tags": ["website", "phishing", "credential_theft", "lookalike_domain"]
+  },
+  {
+    "dataset_key": "website_store_genuine_001",
+    "scenario_type": "website",
+    "label": "genuine",
+    "title": "Store Account Settings Page",
+    "difficulty": 2,
+    "source": "managed_dataset:synthetic_website",
+    "content": {
+      "asset_kind": "website_html",
+      "suspicious": false,
+      "brand": "North Trail Store",
+      "display_domain": "store.example",
+      "call_to_action": "Review settings",
+      "body": "Manage your notification preferences and shipping addresses from your account settings."
+    },
+    "indicators": [
+      "The domain matches the expected store domain",
+      "The page describes normal account settings",
+      "No urgent threat or unusual payment request appears",
+      "The action is limited to reviewing preferences"
+    ],
+    "explanation": "This website is genuine because it uses an expected domain and normal account settings language.",
+    "tags": ["website", "account_settings", "genuine", "low_pressure"]
+  }
+]

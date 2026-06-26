@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+button,
+textarea,
+input {
+  font: inherit;
+}
+
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2;
+}
+
+.panel {
+  @apply border border-slate-200 bg-white shadow-soft;
+  border-radius: 8px;
+}
+
+.metric {
+  @apply text-2xl font-semibold tracking-normal text-slate-950;
+}

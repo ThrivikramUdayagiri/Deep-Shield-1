@@ -1,0 +1,17 @@
+.env
+.DS_Store
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+node_modules/
+dist/
+coverage/
+
+backend/app/static/datasets/audio/
+backend/app/static/datasets/images/
+backend/app/static/datasets/qr/
+backend/app/static/datasets/video/
+backend/app/static/datasets/websites/
