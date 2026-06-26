@@ -286,5 +286,105 @@
     ],
     "explanation": "This website is genuine because it uses an expected domain and normal account settings language.",
     "tags": ["website", "account_settings", "genuine", "low_pressure"]
+  },
+  {
+    "dataset_key": "image_profile_deepfake_face_001",
+    "scenario_type": "image",
+    "label": "fake",
+    "title": "Executive Directory Photo",
+    "difficulty": 4,
+    "source": "managed_dataset:synthetic_face_deepfake",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "profile",
+      "suspicious": true,
+      "headline": "Finance Manager Profile Update",
+      "subhead": "New employee record",
+      "detail": "Profile photo shows anomalies: asymmetrical glasses frames, warped background lines near the ear, and double-lobed ear structures.",
+      "alt": "AI-generated headshot with alignment errors"
+    },
+    "indicators": [
+      "Left and right earrings are completely asymmetrical in shape and color",
+      "Background patterns warp and curve near the borders of the hair",
+      "The glasses frame merges unnaturally into the temple on one side",
+      "The pupils show non-circular shapes and asymmetrical reflection points"
+    ],
+    "explanation": "This is a face morphing/deepfake image. While the overall portrait looks realistic, micro-artifacts like asymmetrical accessories, warped background lines, and inconsistent eyewear prove it was AI-generated.",
+    "tags": ["image", "face_morphing", "deepfake", "profile_impersonation"]
+  },
+  {
+    "dataset_key": "image_profile_genuine_headshot_001",
+    "scenario_type": "image",
+    "label": "genuine",
+    "title": "Staff Verification Headshot",
+    "difficulty": 2,
+    "source": "managed_dataset:synthetic_face_genuine",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "profile",
+      "suspicious": false,
+      "headline": "Verified Security Officer Portrait",
+      "subhead": "Official security badge",
+      "detail": "The portrait shows high-fidelity natural features, symmetrical jewelry, and consistent light reflection across the face.",
+      "alt": "High-resolution verified staff portrait"
+    },
+    "indicators": [
+      "Symmetrical and matching facial accessories",
+      "Background is clean with no warping or AI generation artifacts",
+      "Light reflections are physically consistent across both eyes",
+      "Hair strands and boundaries blend naturally with the background"
+    ],
+    "explanation": "This is genuine. The portrait has perfect visual consistency, realistic lighting physics, and lacks the structural distortions typical of deepfakes and morphing.",
+    "tags": ["image", "portrait", "genuine", "verification"]
+  },
+  {
+    "dataset_key": "image_whatsapp_phish_screenshot_001",
+    "scenario_type": "image",
+    "label": "fake",
+    "title": "WhatsApp Vendor Invoice Screenshot",
+    "difficulty": 3,
+    "source": "managed_dataset:synthetic_screenshot",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "document",
+      "suspicious": true,
+      "headline": "Chat Screenshot: Apex Supplies",
+      "subhead": "Chat billing instruction",
+      "detail": "A screenshot of a WhatsApp thread where a contact claiming to be Apex Supplies sends a billing document via an external file-sharing link: https://apex-supplies-files.example/download-invoice",
+      "alt": "Screenshot of WhatsApp chat redirecting to unverified billing link"
+    },
+    "indicators": [
+      "Conducts official billing updates via personal chat rather than official portal",
+      "Redirects to an external unverified domain to download a file",
+      "Sender has no verified business checkmark in the screenshot",
+      "The conversation creates pressure to pay before accounting closes"
+    ],
+    "explanation": "This is fake. Moving procurement and payment details to an unverified WhatsApp chat with external links is a strong indicator of invoice fraud via impersonation.",
+    "tags": ["image", "screenshot", "whatsapp", "invoice_fraud", "phishing"]
+  },
+  {
+    "dataset_key": "image_email_phish_screenshot_001",
+    "scenario_type": "image",
+    "label": "fake",
+    "title": "IT Security Alert Email Screenshot",
+    "difficulty": 3,
+    "source": "managed_dataset:synthetic_screenshot",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "document",
+      "suspicious": true,
+      "headline": "Alert: Security Credential Update",
+      "subhead": "Urgent system migration notice",
+      "detail": "A screenshot of an email claiming your Microsoft SSO keys must be verified within 2 hours. It provides a login link pointing to https://microsoft-security-auth.example/login",
+      "alt": "Screenshot of an email phishing scam targeting Microsoft login credentials"
+    },
+    "indicators": [
+      "Sender email address domain does not match official company domain",
+      "Creates artificial urgency with a 2-hour deadline",
+      "Directs the user to a lookalike external verification domain",
+      "Asks for sensitive SSO login credentials to prevent account suspension"
+    ],
+    "explanation": "This is fake. Official security migrations do not use high-pressure suspension threats, and the verification link uses a lookalike domain instead of the company's SSO portal.",
+    "tags": ["image", "screenshot", "email_phishing", "credential_theft"]
   }
 ]
