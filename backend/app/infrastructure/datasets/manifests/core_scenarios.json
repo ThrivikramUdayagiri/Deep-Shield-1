@@ -386,5 +386,280 @@
     ],
     "explanation": "This is fake. Official security migrations do not use high-pressure suspension threats, and the verification link uses a lookalike domain instead of the company's SSO portal.",
     "tags": ["image", "screenshot", "email_phishing", "credential_theft"]
+  },
+  {
+    "dataset_key": "image_profile_deepfake_face_002",
+    "scenario_type": "image",
+    "label": "fake",
+    "title": "Contractor Verification Photo",
+    "difficulty": 4,
+    "source": "managed_dataset:face_morph",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "profile",
+      "suspicious": true,
+      "headline": "Contractor Directory Submission",
+      "subhead": "Profile image security check",
+      "detail": "Noticeable face morphing artifacts: left eye pupil is oval while the right eye pupil is round, iris colors differ slightly, and shirt collar is asymmetrical.",
+      "alt": "AI-generated profile headshot showing mismatched iris colors and pupil shapes"
+    },
+    "indicators": [
+      "Mismatch in iris color and pupil shape between left and right eyes",
+      "The neckline of the clothing merges weirdly with the background shadow",
+      "Ear details are blurry and asymmetrical",
+      "Foliage in the background contains floating, non-physical shapes"
+    ],
+    "explanation": "This profile photo is fake due to classic generative AI errors, including mismatched pupil geometry, uneven collar rendering, and unnatural background elements.",
+    "tags": ["image", "face_morphing", "deepfake", "profile_verification"]
+  },
+  {
+    "dataset_key": "image_profile_genuine_headshot_002",
+    "scenario_type": "image",
+    "label": "genuine",
+    "title": "Consultant Profile Photo",
+    "difficulty": 2,
+    "source": "managed_dataset:face_genuine",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "profile",
+      "suspicious": false,
+      "headline": "Security Access Photo",
+      "subhead": "Verified contractor badge",
+      "detail": "A professional photograph with consistent depth of field, clear skin texture, matching earrings, and realistic reflections.",
+      "alt": "High-resolution real photograph of a consultant for security badge"
+    },
+    "indicators": [
+      "Light reflections in both eyes are in the same relative position",
+      "Symmetrical jewelry and realistic textile details on clothing",
+      "Clean, natural blur transition around hair strands",
+      "Physical details like skin texture and glasses frames are structurally perfect"
+    ],
+    "explanation": "This photo is genuine. It shows realistic lighting physics, precise symmetry of facial features, and lacks structural morphing artifacts.",
+    "tags": ["image", "portrait", "genuine", "verification"]
+  },
+  {
+    "dataset_key": "image_profile_deepfake_face_003",
+    "scenario_type": "image",
+    "label": "fake",
+    "title": "External Partner Profile Photo",
+    "difficulty": 4,
+    "source": "managed_dataset:face_morph",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "profile",
+      "suspicious": true,
+      "headline": "Supplier Portal Registration",
+      "subhead": "Vendor identity picture",
+      "detail": "The image contains severe morphing artifacts: background wall lines bend unnaturally around the hair, and one glasses frame lens is shaped differently than the other.",
+      "alt": "Vendor profile image showing warped background lines and asymmetric glasses frames"
+    },
+    "indicators": [
+      "Warped and bent background architectural lines near the hair outline",
+      "Inconsistent lens shapes and misaligned glasses frames",
+      "Double eyelid creases that merge and disappear abruptly",
+      "Asymmetrical light reflection source in the pupils"
+    ],
+    "explanation": "This photo is fake because of morphing and alignment issues. Background warping and uneven glasses frame physics are clear indicators of AI face generation.",
+    "tags": ["image", "face_morphing", "deepfake", "vendor_identity"]
+  },
+  {
+    "dataset_key": "image_whatsapp_job_scam_001",
+    "scenario_type": "image",
+    "label": "fake",
+    "title": "WhatsApp Easy Income Offer",
+    "difficulty": 3,
+    "source": "managed_dataset:whatsapp_chat_screenshot",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "document",
+      "suspicious": true,
+      "headline": "Chat Screenshot: Global Recruiting",
+      "subhead": "Unsolicited work-from-home chat",
+      "detail": "A chat log screenshot offering Rs. 5,000 for reviewing hotels online, demanding payment details up front.",
+      "alt": "Screenshot of a WhatsApp chat window offering high pay for hotel reviews"
+    },
+    "indicators": [
+      "Unsolicited contact from a business name using a generic logo",
+      "Offers high daily wages for trivial tasks like clicking buttons",
+      "Requests bank details before sharing onboarding materials",
+      "Sender's country code does not match the company's claimed headquarters"
+    ],
+    "explanation": "This WhatsApp thread screenshot is fake because it represents a recruitment scam that uses easy tasks to harvest payment credentials.",
+    "tags": ["image", "screenshot", "whatsapp", "job_scam", "recruitment_fraud"]
+  },
+  {
+    "dataset_key": "image_whatsapp_family_emergency_001",
+    "scenario_type": "image",
+    "label": "fake",
+    "title": "WhatsApp Emergency Request",
+    "difficulty": 3,
+    "source": "managed_dataset:whatsapp_chat_screenshot",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "document",
+      "suspicious": true,
+      "headline": "Chat Screenshot: Family Emergency",
+      "subhead": "Impersonation chat thread",
+      "detail": "A screenshot showing a chat from an unknown number claiming to be a child who lost their phone, requesting an urgent UPI money transfer.",
+      "alt": "Screenshot of a WhatsApp chat asking for urgent funds due to a broken phone"
+    },
+    "indicators": [
+      "Claims device loss to justify the unknown phone number",
+      "Creates high emotional pressure and demands immediate UPI payment",
+      "Refuses direct phone calls due to 'broken microphone'",
+      "Provides an external payment address unconnected to family accounts"
+    ],
+    "explanation": "This is fake. It matches the family impersonation scam template designed to bypass verification and steal funds via UPI.",
+    "tags": ["image", "screenshot", "whatsapp", "impersonation", "payment_fraud"]
+  },
+  {
+    "dataset_key": "image_whatsapp_team_colleague_001",
+    "scenario_type": "image",
+    "label": "genuine",
+    "title": "WhatsApp Internal Team Standup",
+    "difficulty": 2,
+    "source": "managed_dataset:whatsapp_chat_screenshot",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "document",
+      "suspicious": false,
+      "headline": "Chat Screenshot: Operations Standup",
+      "subhead": "Routine team check-in",
+      "detail": "A screenshot of an internal team group chat discussing status updates. No links or payment requests are present.",
+      "alt": "Screenshot of a casual operations team WhatsApp chat"
+    },
+    "indicators": [
+      "Familiar team members talking about known projects",
+      "Asks for no payments, passwords, or login links",
+      "Fits regular team schedule and communication style",
+      "Conversational context contains specific references to internal work"
+    ],
+    "explanation": "This is a genuine screenshot. The discussion is routine, references known internal project details, and requests no sensitive actions.",
+    "tags": ["image", "screenshot", "whatsapp", "team_chat", "genuine"]
+  },
+  {
+    "dataset_key": "image_email_shared_doc_001",
+    "scenario_type": "image",
+    "label": "fake",
+    "title": "Shared Document Login Phish",
+    "difficulty": 4,
+    "source": "managed_dataset:email_screenshot",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "document",
+      "suspicious": true,
+      "headline": "Email Screenshot: Document Share",
+      "subhead": "Microsoft OneDrive fake sharing mail",
+      "detail": "A screenshot of an email claiming a HR document has been shared. It has a login link pointing to https://onedrive-company-hr-portal.example/login",
+      "alt": "Screenshot of a fake OneDrive email document sharing notification"
+    },
+    "indicators": [
+      "The link points to a non-standard lookalike OneDrive domain",
+      "Sender's email address is from a public email provider, not company domain",
+      "Demands login credentials to view a standard PDF",
+      "Uses urgency to push the user to click the link"
+    ],
+    "explanation": "This is fake. OneDrive sharing notices do not require logging in on lookalike external domains to view files.",
+    "tags": ["image", "screenshot", "email_phishing", "credential_theft"]
+  },
+  {
+    "dataset_key": "image_email_tax_refund_001",
+    "scenario_type": "image",
+    "label": "fake",
+    "title": "Tax Refund Portal Link",
+    "difficulty": 3,
+    "source": "managed_dataset:email_screenshot",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "document",
+      "suspicious": true,
+      "headline": "Email Screenshot: Tax Refund Alert",
+      "subhead": "Government portal impersonation",
+      "detail": "A screenshot of an email claiming you have an outstanding tax refund. The portal link is http://gov-tax-income-refund.example/portal",
+      "alt": "Screenshot of a fake government email offering tax refunds"
+    },
+    "indicators": [
+      "Unsolicited notification of unexpected financial windfall",
+      "Link uses a generic HTTP address instead of a secure government portal",
+      "Sender address uses a lookalike domain name",
+      "Requests credit card details to process the refund"
+    ],
+    "explanation": "This is fake. Tax authorities do not notify citizens of refunds via lookalike domains or request banking details over email links.",
+    "tags": ["image", "screenshot", "email_phishing", "payment_fraud"]
+  },
+  {
+    "dataset_key": "image_email_it_guidelines_001",
+    "scenario_type": "image",
+    "label": "genuine",
+    "title": "IT Security Best Practices",
+    "difficulty": 2,
+    "source": "managed_dataset:email_screenshot",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "document",
+      "suspicious": false,
+      "headline": "Email Screenshot: IT Guidelines",
+      "subhead": "Quarterly security reminder",
+      "detail": "A screenshot of an official IT email outline. It reminds employees to change their password via the official intranet, explicitly advising not to click on email links.",
+      "alt": "Screenshot of a genuine security advisory email from IT"
+    },
+    "indicators": [
+      "Directs employees to access the intranet via their own saved bookmarks",
+      "Contains no links or attachments",
+      "Uses the official internal company domain",
+      "Asks for no credentials or sensitive verification data"
+    ],
+    "explanation": "This is genuine. It provides safety information and directs employees to verify and update their credentials independently.",
+    "tags": ["image", "screenshot", "email", "it_services", "genuine"]
+  },
+  {
+    "dataset_key": "image_invoice_modified_total_001",
+    "scenario_type": "image",
+    "label": "fake",
+    "title": "Tampered Invoice Scan",
+    "difficulty": 4,
+    "source": "managed_dataset:invoice_screenshot",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "document",
+      "suspicious": true,
+      "headline": "Invoice Scan: Operations Equipment",
+      "subhead": "Digitized receipt review",
+      "detail": "A scanned invoice screenshot where the payment total font, size, and alignment are inconsistent with the rest of the text, showing signs of digital manipulation.",
+      "alt": "Scanned invoice with visible font edits on the payment total line"
+    },
+    "indicators": [
+      "Inconsistent font type and size on the payment amount field",
+      "Artifact halos around the numbers, suggesting copy-paste or edit",
+      "Line alignment of the total is skewed compared to other columns",
+      "The VAT calculations do not mathematically match the edited total"
+    ],
+    "explanation": "This is a fake image. The payment amount field has been digitally modified, creating font, alignment, and calculation inconsistencies.",
+    "tags": ["image", "document_tampering", "invoice_fraud", "fake_receipt"]
+  },
+  {
+    "dataset_key": "image_document_certification_001",
+    "scenario_type": "image",
+    "label": "genuine",
+    "title": "Business Incorporation Certificate",
+    "difficulty": 2,
+    "source": "managed_dataset:document_scan",
+    "content": {
+      "asset_kind": "svg_image",
+      "template": "document",
+      "suspicious": false,
+      "headline": "Certificate of Incorporation",
+      "subhead": "Verified corporate registration document",
+      "detail": "A scanned official business certificate showing matching corporate stamps, aligned text, and consistent paper texture.",
+      "alt": "High-resolution scan of a business incorporation certificate"
+    },
+    "indicators": [
+      "Stamps are aligned and show natural ink bleed matching paper texture",
+      "Typography and lines are consistent and sharp without modification artifacts",
+      "Corporate details can be cross-referenced with public registry",
+      "No signs of patch edits or inconsistent font replacements"
+    ],
+    "explanation": "This is genuine. The document is structurally consistent, has authentic security marks, and shows no digital modification halos.",
+    "tags": ["image", "document", "certification", "genuine"]
   }
 ]
