@@ -36,7 +36,7 @@ function formatApiError(detail: unknown): string | null {
       return JSON.stringify(detail);
     }
     if (Array.isArray(value.loc) && value.loc.length > 0) {
-      const field = String(value.loc[value.loc.length - 1]).replaceAll("_", " ");
+      const field = String(value.loc[value.loc.length - 1]).replace(/_/g, " ");
       return `${field}: ${formatted}`;
     }
     return formatted;
