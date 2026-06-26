@@ -24,31 +24,37 @@ export function ModesPage() {
   return (
     <div className="grid gap-6">
       <div>
-        <h1 className="text-2xl font-semibold tracking-normal text-slate-950">Training Modes</h1>
-        <p className="mt-1 text-slate-500">Choose the practice loop that matches the skill you want to sharpen.</p>
+        <h1 className="text-3xl font-extrabold tracking-tight text-white">Training Modes</h1>
+        <p className="mt-1 text-slate-450 text-sm">Choose the practice loop that matches the skill you want to sharpen.</p>
       </div>
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {modes.map((mode) => {
           const Icon = icons[mode.id] ?? Sparkles;
           return (
-            <Link key={mode.id} to={`/training?mode=${mode.id}`} className="panel p-5 hover:border-teal-300">
-              <div className="grid h-11 w-11 place-items-center rounded-lg bg-teal-50 text-teal-700">
+            <Link
+              key={mode.id}
+              to={`/training?mode=${mode.id}`}
+              className="panel p-6 hover:border-teal-500/35 group transition-all duration-300"
+            >
+              <div className="grid h-11 w-11 place-items-center rounded-xl bg-teal-500/10 text-teal-400 border border-teal-500/20 shadow-[0_0_15px_rgba(20,184,166,0.15)] group-hover:scale-110 transition-all duration-300">
                 <Icon size={22} />
               </div>
-              <h2 className="mt-5 text-lg font-semibold tracking-normal text-slate-950">{mode.title}</h2>
-              <p className="mt-2 leading-6 text-slate-600">{mode.description}</p>
+              <h2 className="mt-5 text-lg font-bold tracking-tight text-slate-200 group-hover:text-teal-450 transition-colors">
+                {mode.title}
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-slate-400">{mode.description}</p>
             </Link>
           );
         })}
       </section>
-      <section className="panel p-5">
-        <h2 className="text-lg font-semibold tracking-normal">Content Types</h2>
-        <div className="mt-4 flex flex-wrap gap-2">
+      <section className="panel p-6">
+        <h2 className="text-lg font-bold tracking-tight text-white mb-4">Content Types</h2>
+        <div className="flex flex-wrap gap-2.5">
           {["text", "image", "audio", "video", "qr_code", "website"].map((type) => (
             <Link
               key={type}
               to={`/training?mode=quick&scenario_type=${type}`}
-              className="focus-ring rounded-md border border-slate-200 px-3 py-2 text-sm font-medium capitalize text-slate-700 hover:bg-slate-100"
+              className="focus-ring rounded-xl border border-slate-800 bg-slate-950/30 px-4 py-2.5 text-sm font-semibold capitalize text-slate-350 hover:border-teal-500/30 hover:bg-teal-500/10 hover:text-teal-400 transition-all duration-200"
             >
               {type.replace("_", " ")}
             </Link>

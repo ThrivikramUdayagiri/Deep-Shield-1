@@ -17,37 +17,37 @@ export function ScenarioRenderer({ scenario }: { scenario: Scenario }) {
     if (channel === "whatsapp" || channel === "chat") {
       return (
         <section className="panel overflow-hidden">
-          <div className="border-b border-slate-200 bg-emerald-50 px-5 py-3">
-            <div className="text-sm font-semibold capitalize text-slate-950">{channel} message</div>
-            <div className="mt-1 text-xs text-slate-600">From {content.sender ?? "unknown sender"}</div>
+          <div className="border-b border-slate-850 bg-emerald-500/5 px-5 py-3">
+            <div className="text-sm font-bold capitalize text-emerald-450">{channel} message</div>
+            <div className="mt-1 text-xs text-slate-400">From {content.sender ?? "unknown sender"}</div>
           </div>
-          <div className="bg-slate-100 p-5">
-            <div className="max-w-[82%] whitespace-pre-line rounded-md bg-white p-4 leading-7 text-slate-950 shadow-sm">
+          <div className="bg-slate-950/50 p-5">
+            <div className="max-w-[85%] whitespace-pre-line rounded-xl bg-emerald-950/30 border border-emerald-900/20 p-4 text-sm leading-relaxed text-slate-100 shadow-lg">
               {content.body}
             </div>
           </div>
-          {content.context && <div className="border-t border-slate-200 px-5 py-3 text-sm text-slate-600">{content.context}</div>}
+          {content.context && <div className="border-t border-slate-850 bg-slate-950/25 px-5 py-3.5 text-xs text-slate-400 leading-relaxed">{content.context}</div>}
         </section>
       );
     }
     return (
       <section className="panel p-5">
-        <div className="mb-4 flex items-center gap-2 text-sm font-medium capitalize text-slate-500">
-          <FileText size={18} />
+        <div className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
+          <FileText size={18} className="text-teal-400" />
           {channel} from {content.sender ?? "unknown sender"}
         </div>
-        <div className="whitespace-pre-line rounded-md border border-slate-200 bg-slate-50 p-4 text-base leading-7 text-slate-950">
+        <div className="whitespace-pre-line rounded-xl border border-slate-850 bg-slate-950/35 p-5 text-sm leading-relaxed text-slate-200">
           {content.body}
         </div>
-        {content.context && <div className="mt-3 text-sm text-slate-500">{content.context}</div>}
+        {content.context && <div className="mt-3.5 text-xs text-slate-400 leading-relaxed">{content.context}</div>}
       </section>
     );
   }
 
   if (scenario.scenario_type === "image") {
     return (
-      <section className="panel overflow-hidden">
-        <img src={content.asset_url} alt={content.alt ?? scenario.title} className="w-full bg-white object-contain" />
+      <section className="panel overflow-hidden p-2 bg-slate-950/20">
+        <img src={content.asset_url} alt={content.alt ?? scenario.title} className="w-full rounded-lg bg-slate-950/50 object-contain max-h-[500px]" />
       </section>
     );
   }
@@ -55,22 +55,24 @@ export function ScenarioRenderer({ scenario }: { scenario: Scenario }) {
   if (scenario.scenario_type === "audio") {
     return (
       <section className="panel p-5">
-        <div className="mb-4 flex items-center gap-2 text-sm font-medium text-slate-500">
-          <Headphones size={18} />
+        <div className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
+          <Headphones size={18} className="text-teal-400" />
           Voice message: {content.speaker ?? "Audio evidence"}
         </div>
-        <audio controls className="w-full" src={content.asset_url} />
+        <div className="bg-slate-950/45 p-4 rounded-xl border border-slate-900 mb-3">
+          <audio controls className="w-full accent-teal-500" src={content.asset_url} />
+        </div>
         <button
           type="button"
           onClick={speakTranscript}
-          className="focus-ring mt-3 rounded-md border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100"
+          className="focus-ring inline-flex items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/60 px-4 py-2 text-sm font-semibold text-slate-300 hover:bg-slate-800 transition-all duration-200"
         >
           Play transcript as voice
         </button>
-        <div className="mt-5 rounded-md border border-slate-200 bg-slate-50 p-4">
-          <div className="text-xs font-semibold uppercase text-slate-500">Transcript</div>
-          <p className="mt-2 leading-7 text-slate-900">{content.transcript}</p>
-          <div className="mt-3 text-sm text-slate-500">{content.context}</div>
+        <div className="mt-5 rounded-xl border border-slate-850 bg-slate-950/35 p-5">
+          <div className="text-xs font-bold uppercase tracking-wider text-slate-500">Transcript</div>
+          <p className="mt-2.5 text-sm leading-relaxed text-slate-200">{content.transcript}</p>
+          {content.context && <div className="mt-3.5 text-xs text-slate-400 border-t border-slate-850/60 pt-3">{content.context}</div>}
         </div>
       </section>
     );
@@ -79,23 +81,26 @@ export function ScenarioRenderer({ scenario }: { scenario: Scenario }) {
   if (scenario.scenario_type === "video") {
     return (
       <section className="panel overflow-hidden">
-        <div className="relative bg-slate-950">
-          <img src={content.poster_url} alt={scenario.title} className="w-full object-cover" />
-          <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-md bg-white/90 px-3 py-2 text-sm font-medium text-slate-900">
+        <div className="relative bg-slate-950 border-b border-slate-900">
+          <img src={content.poster_url} alt={scenario.title} className="w-full object-cover max-h-[360px]" />
+          <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-lg bg-slate-900/90 border border-slate-800 px-3.5 py-2 text-xs font-bold uppercase tracking-wide text-teal-400 shadow-lg">
             <PlaySquare size={16} />
             Video evidence
           </div>
         </div>
-        <div className="grid gap-4 p-5 md:grid-cols-[1.2fr_0.8fr]">
+        <div className="grid gap-5 p-5 md:grid-cols-[1.2fr_0.8fr]">
           <div>
-            <div className="text-xs font-semibold uppercase text-slate-500">Transcript</div>
-            <p className="mt-2 leading-7 text-slate-900">{content.transcript}</p>
+            <div className="text-xs font-bold uppercase tracking-wider text-slate-500">Transcript</div>
+            <p className="mt-2.5 text-sm leading-relaxed text-slate-200">{content.transcript}</p>
           </div>
-          <div>
-            <div className="text-xs font-semibold uppercase text-slate-500">Observed details</div>
-            <ul className="mt-2 space-y-2 text-sm text-slate-700">
+          <div className="border-l border-slate-900/80 pl-5">
+            <div className="text-xs font-bold uppercase tracking-wider text-slate-500">Observed details</div>
+            <ul className="mt-2.5 space-y-2 text-xs text-slate-350">
               {(content.observations ?? []).map((item: string) => (
-                <li key={item}>{item}</li>
+                <li key={item} className="flex items-start gap-1">
+                  <span className="text-rose-500">•</span>
+                  <span>{item}</span>
+                </li>
               ))}
             </ul>
           </div>
@@ -107,19 +112,21 @@ export function ScenarioRenderer({ scenario }: { scenario: Scenario }) {
   if (scenario.scenario_type === "qr_code") {
     return (
       <section className="panel p-5">
-        <div className="mb-4 flex items-center gap-2 text-sm font-medium text-slate-500">
-          <QrCode size={18} />
+        <div className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
+          <QrCode size={18} className="text-teal-400" />
           {content.placement}
         </div>
-        <div className="grid items-center gap-5 md:grid-cols-[320px_1fr]">
-          <img src={content.asset_url} alt="QR code" className="w-full max-w-xs rounded-md border border-slate-200 bg-white" />
-          <div className="rounded-md border border-slate-200 bg-slate-50 p-4">
-            <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
-              <Link2 size={16} />
+        <div className="grid items-center gap-6 md:grid-cols-[280px_1fr]">
+          <div className="p-3 bg-white rounded-xl border border-slate-800 flex justify-center shadow-lg">
+            <img src={content.asset_url} alt="QR code" className="w-full max-w-[200px]" />
+          </div>
+          <div className="rounded-xl border border-slate-850 bg-slate-950/35 p-5">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
+              <Link2 size={16} className="text-teal-400" />
               Scanner preview
             </div>
-            <div className="mt-3 break-words text-lg font-semibold text-slate-950">{content.destination_url}</div>
-            <p className="mt-3 text-sm text-slate-600">{content.preview_text}</p>
+            <div className="mt-3.5 break-all text-lg font-bold text-teal-450 select-all tracking-wide">{content.destination_url}</div>
+            <p className="mt-3 text-sm text-slate-350 leading-relaxed">{content.preview_text}</p>
           </div>
         </div>
       </section>
@@ -128,22 +135,22 @@ export function ScenarioRenderer({ scenario }: { scenario: Scenario }) {
 
   return (
     <section className="panel overflow-hidden">
-      <div className="flex items-center justify-between gap-3 border-b border-slate-200 bg-slate-50 px-4 py-3">
-        <div className="flex min-w-0 items-center gap-2 text-sm font-medium text-slate-600">
-          <Monitor size={18} className="shrink-0" />
+      <div className="flex items-center justify-between gap-3 border-b border-slate-900 bg-slate-950/40 px-4 py-3">
+        <div className="flex min-w-0 items-center gap-2 text-sm font-semibold text-slate-350">
+          <Monitor size={18} className="shrink-0 text-teal-400" />
           <span className="truncate">{content.display_domain ?? "website capture"}</span>
         </div>
         <a
           href={content.asset_url}
           target="_blank"
           rel="noreferrer"
-          className="focus-ring inline-flex items-center gap-2 rounded-md px-2 py-1 text-sm text-teal-700 hover:bg-teal-50"
+          className="focus-ring inline-flex items-center gap-2 rounded-lg bg-teal-500/10 border border-teal-500/20 px-3 py-1.5 text-xs font-bold text-teal-400 hover:bg-teal-500/20 transition-all duration-200"
         >
-          <ExternalLink size={16} />
-          Open
+          <ExternalLink size={14} />
+          Open website
         </a>
       </div>
-      <iframe title={scenario.title} src={content.asset_url} className="h-[420px] w-full bg-white" sandbox="" />
+      <iframe title={scenario.title} src={content.asset_url} className="h-[420px] w-full bg-white border-none" sandbox="" />
     </section>
   );
 }
